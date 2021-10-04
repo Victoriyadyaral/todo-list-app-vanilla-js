@@ -1,10 +1,12 @@
-<tr key={{id}}>
-    <td>{{title}}</td>
-    <td>{{created}}</td>
-    <td>{{category}}</td>
+{{#each todos}}
+<tr key={{this.id}}>
+    <td>{{this.title}}</td>
+    <td>{{this.created}}</td>
+    <td>{{this.category}}</td>
     <td>
-        <button type="button" class="unarchived-todo__btn button">
+        <button type="button" class="unarchived-todo__btn button" id={{this.id}}>
              <i class="material-icons">unarchive</i>
         </button>
     </td>
 </tr>
+{{/each}}

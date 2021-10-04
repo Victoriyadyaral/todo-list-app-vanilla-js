@@ -1,5 +1,8 @@
-<tr key={{id}}>
-    <td>{{noteCategory}}</td>
-    <td>{{active}}</td>
-    <td>{{archived}}</td>
+{{#each todos}}
+<tr key={{this.id}}>
+    <td>{{this.category}}</td>
+    <td>{{this.notArchived}}</td>
+    <td>{{this.archived}}</td>
+    <td>{{this.all}}</td>
 </tr>
+{{/each}}

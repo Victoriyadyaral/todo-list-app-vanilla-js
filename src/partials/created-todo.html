@@ -1,31 +1,37 @@
-<div class="container">
-<h1>Todo App</h1>
-<button type="button">Create Note</button>
 <div class="add-todo__wrap">
     <form class="add-todo__form">
-        <button type="button" class="modal-close-btn">
-            <i class="material-icons">close</i>
-        </button>
         <p class="add-todo__text">Created new ToDo</p>
         <label class="add-todo__label">
             <span class="add-todo-information">Title</span>
-            <input class="add-todo__input" type="text" id="title" autocomplete="off" placeholder="Add title your new todo" />
+            <input 
+            class="add-todo__input" 
+            type="text" 
+            id="title" 
+            autocomplete="off" 
+            placeholder="Add title your new todo"
+            name="title" 
+            />
         </label>
         <label class="add-todo__label">
             <span class="add-todo-information">Content</span>
-            <input class="add-todo__input" id="content" type="text" autocomplete="off" placeholder="Add content your new todo" />
+            <input 
+            class="add-todo__input" 
+            id="content" type="text" 
+            autocomplete="off" 
+            placeholder="Add content your new todo"
+            name="content" 
+            />
         </label>
         <label for="category">Category</label>
-        <select id="category" name="category">
-            <option value="task">Task</option>
-            <option value="rand-thought">Random Thought</option>
-            <option value="idea" selected>Idea</option>
-            <option value="quote">Quote</option>
+        <select id="category" name="category" class="category">
+            <option class="category__option" value="task">Task</option>
+            <option class="category__option" value="rand-thought">Random Thought</option>
+            <option class="category__option" value="idea" selected>Idea</option>
+            <option class="category__option" value="quote">Quote</option>
         </select>
-        <button type="submit" class="add-todo__btn button">
+        <button type="submit" class="add-todo__btn button" id="addTodo">
             <i class="material-icons">add</i>
         </button>
     </form>
     <div class="input-line"></div>
-</div>
 </div>

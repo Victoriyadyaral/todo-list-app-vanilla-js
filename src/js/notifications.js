@@ -7,7 +7,7 @@ toastr.options = {
   "debug": false,
   "newestOnTop": false,
   "progressBar": false,
-  "positionClass": "toast-top-center",
+  "positionClass": "toast-top-right",
   "preventDuplicates": false,
   "onclick": null,
   "showDuration": "300",
@@ -21,11 +21,11 @@ toastr.options = {
 }
 
 export default {
-    successRequest() {
-        toastr["info"]("Success. You can see your notes")
+    success() {
+        toastr["info"]("Success. Your note is created")
     },
 
-    fetchError() {
-        toastr["error"]("Something went wrong. Please, try again!");
+    error() {
+        toastr["error"]("No notes were created. Please enter a title or content for the note!");
     }
 }

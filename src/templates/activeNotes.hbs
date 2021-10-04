@@ -1,9 +1,12 @@
-<tr key={{id}}>
-    <td>{{title}}</td>
-    <td>{{created}}</td>
-    <td>{{category}}</td>
-    <td>{{content}}</td>
-    <td>{{dates}}</td>
+{{#each todos}}
+<tr key={{this.id}}>
+    <td>    
+    </td>
+    <td>{{this.title}}</td>
+    <td>{{this.created}}</td>
+    <td>{{this.category}}</td>
+    <td>{{this.content}}</td>
+    <td>{{this.dates}}</td>
     <td>
         <button type="button" class="edit-todo__btn button">
              <i class="material-icons">edit</i>
@@ -20,3 +23,4 @@
         </button>
     </td>
 </tr>
+{{/each}}
