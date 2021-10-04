@@ -23,7 +23,7 @@ export default [
             category: "idea",
             content: "implement new feature to October 05, 2021",
             isArchived: false,
-            dates: ''
+            dates: "5/10/2021"
         },
         {
             id: 4,
@@ -50,7 +50,7 @@ export default [
             category: "task",
             content: "Must do all homeworks to October 15, 2021",
             isArchived: false,
-            dates: ''
+            dates: "15/10/2021"
         },
         {
             id: 7,

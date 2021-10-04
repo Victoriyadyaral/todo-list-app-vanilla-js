@@ -2,7 +2,6 @@
 import TodoApp from './js/todoApp.js';
 import todos from './js/todos.js';
 import refs from './js/get-refs.js';
-//import notifications from './js/notifications.js';
 
 import createTodo from './js/createTodo.js';
 import todoByCategory from './js/getTodoByCategory.js';
@@ -15,14 +14,19 @@ const todoList = [...todos];
 const todoApp = new TodoApp;
 
 function renderer (list, table, template) {
-    table.innerHTML = '';
-    console.log('list', list)
-    table.insertAdjacentHTML(
-        'beforeend',
-        template({
-            todos: list,
-        }),
-    );
+    try {
+        table.innerHTML = '';
+        table.insertAdjacentHTML(
+            'beforeend',
+            template({
+                todos: list,
+            }),
+        );
+    } catch {
+        const messageTag = document.createElement("p");
+        const message = messageTag.textContent = "You don't have notes";
+        table.insertAdjacentHTML('beforeend', message);
+    }
 };
 
 const archivedList = list => list.filter(item => item.isArchived);
@@ -30,8 +34,8 @@ const archivedList = list => list.filter(item => item.isArchived);
 const notArchivedList = list => list.filter(item => !item.isArchived);
 
 renderer(notArchivedList(todoList), refs.activeNoteRow, activeNotesTemplate);
-renderer(archivedList(todoList), refs.archivedNotesTable, archivedNotesTemplate);
-renderer(todoByCategory(refs.options, todoList) , refs.allNotesTable, allNotesTemplate);
+renderer(archivedList(todoList), refs.archivedNotesRow, archivedNotesTemplate);
+renderer(todoByCategory(refs.options, todoList) , refs.allNotesRow, allNotesTemplate);
 
 const clearForm = () => {
         refs.contentInput.value = '';
@@ -58,19 +62,40 @@ const onClick = (e) => {
     const id = parseInt(e.target.id);
     const index = todoList.findIndex(i => i.id === id);
 
-    if (e.target.textContent === "remove") {   
+    if (e.target.textContent === "remove") {
         todoApp.deleteTodo(index, todoList);
         renderer(notArchivedList(todoList), refs.activeNoteRow, activeNotesTemplate);
-        renderer(todoByCategory(refs.options, todoList), refs.allNotesTable, allNotesTemplate);
+        renderer(todoByCategory(refs.options, todoList), refs.allNotesRow, allNotesTemplate);
     }
     
     if (e.target.textContent === "archive") {
         todoApp.archivedTodo(index, todoList);
         renderer(notArchivedList(todoList), refs.activeNoteRow, activeNotesTemplate);
-        renderer(archivedList(todoList), refs.archivedNotesTable, archivedNotesTemplate);
-        renderer(todoByCategory(refs.options, todoList) , refs.allNotesTable, allNotesTemplate);
+        renderer(archivedList(todoList), refs.archivedNotesRow, archivedNotesTemplate);
+        renderer(todoByCategory(refs.options, todoList), refs.allNotesRow, allNotesTemplate);
     }
-        
-}
+
+    if (e.target.textContent === "edit") {
+        const [updatedTodo] = todoApp.updateTodo(index, todoList);
+        console.log(updatedTodo)
+        refs.contentInput.value = updatedTodo.content;
+        refs.titleInput.value = updatedTodo.title;
+        refs.categorySelected.value = updatedTodo.category;
+    }
+    return;
+};
+
+const onUnarchivedBtnClick = (e) => {
+    if (e.target.textContent !== "unarchive") {
+        return;
+    }
+        const id = parseInt(e.target.id);
+        const index = todoList.findIndex(i => i.id === id);
+        todoApp.unArchivedTodo(index, todoList);
+        renderer(notArchivedList(todoList), refs.activeNoteRow, activeNotesTemplate);
+        renderer(archivedList(todoList), refs.archivedNotesRow, archivedNotesTemplate);
+        renderer(todoByCategory(refs.options, todoList), refs.allNotesRow, allNotesTemplate);
+};
 
 refs.activeNotesTable.addEventListener('click', onClick);
+refs.archivedNotesTable.addEventListener('click', onUnarchivedBtnClick);
