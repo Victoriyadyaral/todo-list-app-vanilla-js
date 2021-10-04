@@ -8,18 +8,18 @@
     <td>{{this.content}}</td>
     <td>{{this.dates}}</td>
     <td>
-        <button type="button" class="edit-todo__btn button">
+        <button type="button" id='{{this.id}}-editBtn' class="edit-todo__btn button">
              <i class="material-icons">edit</i>
         </button>
     </td>
     <td>
-        <button type="button" class="archived-todo__btn button">
-            <i class="material-icons">archive</i>
+        <button type="button"  class="archived-todo__btn button">
+            <i class="material-icons" id='{{this.id}}-archiveBtn'>archive</i>
         </button>
     </td>
     <td>
         <button type="button" class="delete-todo__btn button">
-            <i class="material-icons">remove</i>
+            <i class="material-icons" id='{{this.id}}-deleteBtn'>remove</i>
         </button>
     </td>
 </tr>

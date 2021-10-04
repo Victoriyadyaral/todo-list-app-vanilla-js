@@ -1,17 +1,20 @@
 //import './sass/main.scss';
+import TodoApp from './js/todoApp.js';
 import todos from './js/todos.js';
 import refs from './js/get-refs.js';
-import getDate from './js/get-date.js';
-import notifications from './js/notifications.js';
+//import notifications from './js/notifications.js';
+
+import createTodo from './js/createTodo.js';
+import todoByCategory from './js/getTodoByCategory.js';
+
 import activeNotesTemplate from './templates/activeNotes.hbs';
 import archivedNotesTemplate from './templates/archivedNotes.hbs';
 import allNotesTemplate from './templates/allNotes.hbs';
 
-const { getCurrentDay, getDatesFromStr } = getDate;
-
 const todoList = [...todos];
+const todoApp = new TodoApp;
 
-const renderer = (list, table, template) => {
+function renderer (list, table, template) {
     table.innerHTML = '';
     console.log('list', list)
     table.insertAdjacentHTML(
@@ -22,76 +25,52 @@ const renderer = (list, table, template) => {
     );
 };
 
-const archivedList = list => list.filter(item => item.isArchived === true);
+const archivedList = list => list.filter(item => item.isArchived);
 
-const notArchivedList = list => list.filter(item => item.isArchived === false);
+const notArchivedList = list => list.filter(item => !item.isArchived);
 
-const countTodoInCategory = (todoCategory, list) => {
-    const allTodosInCategory = list.filter(item => item.category === todoCategory );
-    const archivedTodosInCategory = allTodosInCategory.filter(item => item.isArchived).length;
-    const numOfAllTodos = allTodosInCategory.length
-    
-    return ({
-        category: todoCategory,
-        all: numOfAllTodos,
-        archived: archivedTodosInCategory,
-        notArchived: numOfAllTodos - archivedTodosInCategory
-    })
-}
-
-const getCategoryList = (optionsRef) => {
-
-const categoryList = []
-for (let i = 0; i < optionsRef.length; i++) {
-    categoryList.push(optionsRef[i].value)
-}
-return categoryList;
-}
-
-const todoInCategory = (elementsRef, list) => {
-    const a = (getCategoryList(elementsRef));
-    console.log(a)
-    return a.map(el => countTodoInCategory(el, list));
-}
-
-const todoListInCategory = todoInCategory(refs.options, todoList);
-
-renderer(notArchivedList(todoList), refs.activeNotesTable, activeNotesTemplate);
+renderer(notArchivedList(todoList), refs.activeNoteRow, activeNotesTemplate);
 renderer(archivedList(todoList), refs.archivedNotesTable, archivedNotesTemplate);
-renderer(todoListInCategory , refs.allNotesTable, allNotesTemplate);
+renderer(todoByCategory(refs.options, todoList) , refs.allNotesTable, allNotesTemplate);
 
- const clearForm = () => {
+const clearForm = () => {
         refs.contentInput.value = '';
         refs.titleInput.value = '';
-}
-    
-const createTodo = (contentText, titleText, categoryOption) => {
-   if (contentText && titleText) {
-        const newTodo = {
-            id: Date.now(),
-            content: contentText,  
-            created: getCurrentDay(),
-            isArchived: false,
-            title: titleText, 
-            category: categoryOption,
-            dates: getDatesFromStr(contentText)
-        };
-        console.log(newTodo)
-
-        todoList.push(newTodo);
-        notifications.success();
-        console.log(todoList)
-    } else {
-        notifications.error();
-    }
 }
 
 const handleSubmit = e => {
   e.preventDefault();
-    createTodo(refs.contentInput.value, refs.titleInput.value, refs.categorySelected.value);
-    clearForm();
-    renderer(notArchivedList(todoList), refs.activeNotesTable, activeNotesTemplate);
+    const newTodo = createTodo(refs.contentInput.value, refs.titleInput.value, refs.categorySelected.value);
+    if (refs.contentInput?.value && refs.titleInput?.value) {
+        console.log(newTodo)
+        todoApp.addTodo(newTodo, todoList);
+        console.log(todoList);
+        clearForm();
+        const list = notArchivedList(todoList);
+        renderer(list, refs.activeNoteRow, activeNotesTemplate);
+    }
 };
 
-refs.form.addEventListener('submit', handleSubmit)
+refs.form.addEventListener('submit', handleSubmit);
 
+const onClick = (e) => {
+
+    const id = parseInt(e.target.id);
+    const index = todoList.findIndex(i => i.id === id);
+
+    if (e.target.textContent === "remove") {   
+        todoApp.deleteTodo(index, todoList);
+        renderer(notArchivedList(todoList), refs.activeNoteRow, activeNotesTemplate);
+        renderer(todoByCategory(refs.options, todoList), refs.allNotesTable, allNotesTemplate);
+    }
+    
+    if (e.target.textContent === "archive") {
+        todoApp.archivedTodo(index, todoList);
+        renderer(notArchivedList(todoList), refs.activeNoteRow, activeNotesTemplate);
+        renderer(archivedList(todoList), refs.archivedNotesTable, archivedNotesTemplate);
+        renderer(todoByCategory(refs.options, todoList) , refs.allNotesTable, allNotesTemplate);
+    }
+        
+}
+
+refs.activeNotesTable.addEventListener('click', onClick);

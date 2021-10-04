@@ -27,5 +27,11 @@ export default {
 
     error() {
         toastr["error"]("No notes were created. Please enter a title or content for the note!");
+    },
+    warning() {
+        toastr["warning"]("Deleted!");
+    },
+    successAdd() {
+        toastr["info"]("Todo Added, success!")
     }
 }
