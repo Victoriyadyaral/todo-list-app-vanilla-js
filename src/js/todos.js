@@ -4,7 +4,7 @@ export default [
             title: "Shopping list",
             created: "October 02, 2021",
             category: "Task",
-            content: "bread, grape and cake",
+            content: "Need to buy bread, grape and cake",
             isArchived: false,
             dates: []
         },
@@ -49,7 +49,7 @@ export default [
             title: "Deadline day",
             created: "October 03, 2021",
             category: "Task",
-            content: "Must do all homeworks to 15.10.2021",
+            content: "Must do 3 homeworks to 15.10.2021",
             isArchived: false,
             dates: ["15.10.2021"]
         },
