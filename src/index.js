@@ -42,13 +42,15 @@ const clearForm = () => {
 }
 
 const handleSubmit = e => {
-  e.preventDefault();
-    const newTodo = createTodo(refs.contentInput.value, refs.titleInput.value, refs.categorySelected.value);
+    e.preventDefault();
+    const category = refs.categorySelected.value.split(/\-/).map(word => word[0].toUpperCase() + word.substring(1)).join(' ');
+    const newTodo = createTodo(refs.contentInput.value, refs.titleInput.value, category);
     if (refs.contentInput?.value && refs.titleInput?.value) {
         todoApp.addTodo(newTodo, todoList);
         clearForm();
         const list = notArchivedList(todoList);
         renderer(list, refs.activeNoteRow, activeNotesTemplate);
+        renderer(todoByCategory(refs.options, todoList), refs.allNotesRow, allNotesTemplate);
     }
 };
 
