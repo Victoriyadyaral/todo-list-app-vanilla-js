@@ -43,7 +43,7 @@ const clearForm = () => {
 
 const handleSubmit = e => {
     e.preventDefault();
-    const category = refs.categorySelected.value.split(/\-/).map(word => word[0].toUpperCase() + word.substring(1)).join(' ');
+    const category = refs.categorySelected.value.split(/\-/).map(word => word[0]?.toUpperCase() + word.substring(1)).join(' ');
     const newTodo = createTodo(refs.contentInput.value, refs.titleInput.value, category);
     if (refs.contentInput?.value && refs.titleInput?.value) {
         todoApp.addTodo(newTodo, todoList);
@@ -78,7 +78,6 @@ const onClick = (e) => {
         const [updatedTodo] = todoApp.updateTodo(index, todoList);
         refs.contentInput.value = updatedTodo.content;
         refs.titleInput.value = updatedTodo.title;
-        refs.categorySelected.value = updatedTodo.category;
     }
     return;
 };
