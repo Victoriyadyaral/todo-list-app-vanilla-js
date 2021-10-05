@@ -78,6 +78,12 @@ const onClick = (e) => {
         const [updatedTodo] = todoApp.updateTodo(index, todoList);
         refs.contentInput.value = updatedTodo.content;
         refs.titleInput.value = updatedTodo.title;
+        refs.options.forEach(option => {
+            option.removeAttribute("selected");
+            if (option.label === updatedTodo.category) {
+                option.setAttribute("selected", true);
+            }
+    })
     }
     return;
 };
