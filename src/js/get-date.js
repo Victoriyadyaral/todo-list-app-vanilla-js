@@ -11,6 +11,4 @@ const getDatesFromStr = (str) => {
     return dates === null ? [] : dates;
 }
 
-console.log( getDatesFromStr('12.15.2021'))
-
 export default { getCurrentDay, getDatesFromStr };

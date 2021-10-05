@@ -1,37 +1,41 @@
+<section class="container">
 <div class="add-todo__wrap">
     <form class="add-todo__form">
         <h2 class="add-todo__text">Created new ToDo</h2>
-        <label class="add-todo__label">
-            <span class="add-todo-information">Title</span>
+        <button type="submit" class="add-todo__btn btn button" id="addTodo">
+            <i class="material-icons add">add</i>
+        </button>
+        <div class="input-group input-group-lg">
+            <span class="add-todo-information input-group-text" id="basic-addon1">Title</span>
             <input 
-            class="add-todo__input" 
+            class="add-todo__input form-control" 
+            aria-label="add title todo in input" aria-describedby="add-title-input"
             type="text" 
             id="title" 
             autocomplete="off" 
             placeholder="Add title your new todo"
             name="title" 
             />
-        </label>
-        <label class="add-todo__label">
-            <span class="add-todo-information">Content</span>
+        </div>
+        <div class="input-group input-group-lg">
+            <span class="add-todo-information input-group-text" id="basic-addon2">Content</span>
             <input 
-            class="add-todo__input" 
+            class="add-todo__input form-control" 
+            aria-label="add content todo in  input" aria-describedby="add-content-input"
             id="content" type="text" 
             autocomplete="off" 
             placeholder="Add content your new todo"
             name="content" 
             />
-        </label>
+        </div>
         <label for="category">Category</label>
-        <select id="category" name="category" class="add-todo__category">
+        <select id="category" name="category" class="add-todo__category form-select" aria-label="Default select example">
             <option class="add-todo__option" value="task">Task</option>
             <option class="add-todo__option" value="random-thought">Random Thought</option>
             <option class="add-todo__option" value="idea" selected>Idea</option>
             <option class="add-todo__option" value="quote">Quote</option>
         </select>
-        <button type="submit" class="add-todo__btn button" id="addTodo">
-            <i class="material-icons">add</i>
-        </button>
     </form>
     <p add-todo__hint>Enter the date like dd.mm.yyyy</p>
 </div>
+</section>

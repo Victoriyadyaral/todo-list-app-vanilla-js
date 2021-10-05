@@ -1,0 +1,70 @@
+body {
+    padding-top: 30px;
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 20px;
+}
+
+section {
+    padding-top: 40px;
+}
+
+h2 {
+    font-size: 34px;
+    color: indigo;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+table {
+    margin: 10px 0;
+}
+
+p {
+    font-size: 15px;
+}
+
+.btn {
+    margin: 0;
+    padding: 0;
+}
+
+.button {
+    display: block;
+    margin-left: auto;
+    margin-bottom: 10px;
+}
+
+.btn-secondary {
+    padding: 6px 10px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.center {
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.archived-notes__wrap {
+    padding-bottom: 30px;
+    transform: scale(1);
+    transition: transform 3000ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hide {
+    transform: scale(0);
+}

@@ -9,10 +9,8 @@
   archivedNotesRow: document.querySelector('.archived-notes__row'),
   archivedNotesTable: document.querySelector('.archived-notes__table'),
   allNotesRow: document.querySelector('.all-notes__row'),
-  options: document.querySelectorAll('.category__option'),
-  // unArchiveButton: document.getElementById(`unarchiveBtn-${item.id}`),
-  //addTodoWrap: document.querySelector('.add-todo__wrap'),
-  //openCreateNoteModal: document.getElementById('openCreateNodeModal')
-
+  options: document.querySelectorAll('.add-todo__option'),
+  hideBtnArchiv: document.getElementById('showBtnArchiv'),
+  archivedNotesWrap: document.querySelector('.archived-notes__wrap'),
 };
 

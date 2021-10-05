@@ -1,4 +1,4 @@
-//import './sass/main.scss';
+import './sass/main.scss';
 import TodoApp from './js/todoApp.js';
 import todos from './js/todos.js';
 import refs from './js/get-refs.js';
@@ -45,9 +45,7 @@ const handleSubmit = e => {
   e.preventDefault();
     const newTodo = createTodo(refs.contentInput.value, refs.titleInput.value, refs.categorySelected.value);
     if (refs.contentInput?.value && refs.titleInput?.value) {
-        console.log(newTodo)
         todoApp.addTodo(newTodo, todoList);
-        console.log(todoList);
         clearForm();
         const list = notArchivedList(todoList);
         renderer(list, refs.activeNoteRow, activeNotesTemplate);
@@ -97,3 +95,15 @@ const onUnarchivedBtnClick = (e) => {
 
 refs.activeNotesTable.addEventListener('click', onClick);
 refs.archivedNotesTable.addEventListener('click', onUnarchivedBtnClick);
+
+const onHideArchivedBtnClick = () => {
+   
+    refs.archivedNotesWrap.classList.toggle('hide');
+
+    return refs.hideBtnArchiv.textContent === 'Hide' ?
+        refs.hideBtnArchiv.textContent = 'Show'
+        :
+        refs.hideBtnArchiv.textContent = 'Hide';
+}
+
+refs.hideBtnArchiv.addEventListener('click', onHideArchivedBtnClick)

@@ -4,7 +4,7 @@ import getDate from './get-date.js';
 const { getCurrentDay, getDatesFromStr } = getDate;
 
 const createTodo = (contentText, titleText, categoryOption) => {
-    console.log(getDatesFromStr(contentText))
+    
     if (contentText && titleText) {
         const newTodo = {
             id: Date.now(),

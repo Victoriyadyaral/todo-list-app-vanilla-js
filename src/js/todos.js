@@ -13,7 +13,7 @@ export default [
             title: "The theory of ...",
             created: "October 02, 2021",
             category: "Random Thought",
-            content: "want to read",
+            content: "Want to read",
             isArchived: true,
             dates: []
         },
@@ -22,7 +22,7 @@ export default [
             title: "New feature",
             created: "October 03, 2021",
             category: "Idea",
-            content: "implement new feature to 05.10.2021",
+            content: "Implement new feature to 05.10.2021",
             isArchived: false,
             dates: ["05.10.2021"]
         },
