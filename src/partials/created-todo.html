@@ -1,6 +1,6 @@
 <div class="add-todo__wrap">
     <form class="add-todo__form">
-        <p class="add-todo__text">Created new ToDo</p>
+        <h2 class="add-todo__text">Created new ToDo</h2>
         <label class="add-todo__label">
             <span class="add-todo-information">Title</span>
             <input 
@@ -23,15 +23,15 @@
             />
         </label>
         <label for="category">Category</label>
-        <select id="category" name="category" class="category">
-            <option class="category__option" value="task">Task</option>
-            <option class="category__option" value="random-thought">Random Thought</option>
-            <option class="category__option" value="idea" selected>Idea</option>
-            <option class="category__option" value="quote">Quote</option>
+        <select id="category" name="category" class="add-todo__category">
+            <option class="add-todo__option" value="task">Task</option>
+            <option class="add-todo__option" value="random-thought">Random Thought</option>
+            <option class="add-todo__option" value="idea" selected>Idea</option>
+            <option class="add-todo__option" value="quote">Quote</option>
         </select>
         <button type="submit" class="add-todo__btn button" id="addTodo">
             <i class="material-icons">add</i>
         </button>
     </form>
-    <div class="input-line"></div>
+    <p add-todo__hint>Enter the date like dd.mm.yyyy</p>
 </div>

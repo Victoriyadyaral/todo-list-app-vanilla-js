@@ -4,6 +4,7 @@ import getDate from './get-date.js';
 const { getCurrentDay, getDatesFromStr } = getDate;
 
 const createTodo = (contentText, titleText, categoryOption) => {
+    console.log(getDatesFromStr(contentText))
     if (contentText && titleText) {
         const newTodo = {
             id: Date.now(),
@@ -12,7 +13,7 @@ const createTodo = (contentText, titleText, categoryOption) => {
             isArchived: false,
             title: titleText,
             category: categoryOption,
-            dates: getDatesFromStr(contentText)
+            dates: [getDatesFromStr(contentText)]
         };
         notifications.success();
         return newTodo;

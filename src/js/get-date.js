@@ -8,7 +8,9 @@ const getCurrentDay = () => {
 
 const getDatesFromStr = (str) => {
     const dates = str.match(/(\d{1,4}([.\-/])\d{1,2}([.\-/])\d{1,4})/g);
-    return dates === null ? '' : dates;
+    return dates === null ? [] : dates;
 }
+
+console.log( getDatesFromStr('12.15.2021'))
 
 export default { getCurrentDay, getDatesFromStr };

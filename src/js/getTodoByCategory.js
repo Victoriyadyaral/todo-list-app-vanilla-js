@@ -14,16 +14,14 @@ const countTodoInCategory = (todoCategory, list) => {
 const getCategoryList = (optionsRef) => {
 
 const categoryList = []
-for (let i = 0; i < optionsRef.length; i++) {
-    categoryList.push(optionsRef[i].value)
+    for (let i = 0; i < optionsRef.length; i++) {
+    categoryList.push(optionsRef[i].textContent)
 }
 return categoryList;
 }
 
 const todoByCategory = (elementsRef, list) => {
-    const a = (getCategoryList(elementsRef));
-    console.log(a)
-    return a.map(el => countTodoInCategory(el, list));
+    return getCategoryList(elementsRef).map(el => countTodoInCategory(el, list));
 }
 
 export default todoByCategory;

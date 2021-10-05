@@ -11,6 +11,7 @@ import archivedNotesTemplate from './templates/archivedNotes.hbs';
 import allNotesTemplate from './templates/allNotes.hbs';
 
 const todoList = [...todos];
+
 const todoApp = new TodoApp;
 
 function renderer (list, table, template) {
@@ -22,10 +23,8 @@ function renderer (list, table, template) {
                 todos: list,
             }),
         );
-    } catch {
-        const messageTag = document.createElement("p");
-        const message = messageTag.textContent = "You don't have notes";
-        table.insertAdjacentHTML('beforeend', message);
+    } catch(e) {
+        alert(`Notes for render aren't found`);
     }
 };
 
@@ -35,7 +34,7 @@ const notArchivedList = list => list.filter(item => !item.isArchived);
 
 renderer(notArchivedList(todoList), refs.activeNoteRow, activeNotesTemplate);
 renderer(archivedList(todoList), refs.archivedNotesRow, archivedNotesTemplate);
-renderer(todoByCategory(refs.options, todoList) , refs.allNotesRow, allNotesTemplate);
+renderer(todoByCategory(refs.options, todoList), refs.allNotesRow, allNotesTemplate);
 
 const clearForm = () => {
         refs.contentInput.value = '';
@@ -77,7 +76,6 @@ const onClick = (e) => {
 
     if (e.target.textContent === "edit") {
         const [updatedTodo] = todoApp.updateTodo(index, todoList);
-        console.log(updatedTodo)
         refs.contentInput.value = updatedTodo.content;
         refs.titleInput.value = updatedTodo.title;
         refs.categorySelected.value = updatedTodo.category;
